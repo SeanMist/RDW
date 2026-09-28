@@ -1,9 +1,8 @@
-# RDW by Sean
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Veendam Dashboard</title>
 
@@ -15,57 +14,71 @@
     box-sizing:border-box;
 }
 
-body{
-    font-family:'Segoe UI',sans-serif;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Segoe UI, Arial, sans-serif;
     background:#0f172a;
     color:white;
-    overflow:hidden;
+}
+
+#carousel{
+    width:100vw;
+    height:100vh;
+    position:relative;
 }
 
 .slide{
+    position:absolute;
+    inset:0;
     display:none;
-    width:100vw;
-    height:100vh;
-    padding:30px;
-}
-
-.active{
-    display:flex;
     flex-direction:column;
-}
-
-.header{
-    text-align:center;
-    font-size:60px;
-    font-weight:bold;
-    color:#60a5fa;
-    margin-bottom:30px;
-}
-
-.content{
-    flex:1;
-    display:flex;
     justify-content:center;
     align-items:center;
+    padding:40px;
+}
+
+.slide.active{
+    display:flex;
+}
+
+.title{
+    position:absolute;
+    top:25px;
+    left:40px;
+    font-size:48px;
+    font-weight:bold;
+    color:#38bdf8;
 }
 
 .card{
+    width:90%;
+    max-width:1400px;
     background:#1e293b;
     border-radius:20px;
     padding:40px;
-    width:90%;
-    max-width:1400px;
     text-align:center;
-    box-shadow:0 0 25px rgba(0,0,0,.4);
+    box-shadow:0 0 25px rgba(0,0,0,.5);
 }
 
-.big{
-    font-size:120px;
+.clock{
+    font-size:160px;
     font-weight:bold;
 }
 
-.medium{
-    font-size:42px;
+.date{
+    font-size:44px;
+    margin-top:20px;
+}
+
+.weather{
+    font-size:56px;
+    line-height:1.8;
+}
+
+.info{
+    font-size:48px;
     line-height:1.8;
 }
 
@@ -73,93 +86,81 @@ body{
     font-size:28px;
 }
 
-.date{
-    font-size:45px;
-    margin-top:20px;
-}
-
 iframe{
-    width:100%;
-    height:800px;
+    width:95%;
+    height:80%;
     border:none;
-    border-radius:15px;
-}
-
-.news-image{
-    width:700px;
-    border-radius:15px;
-    margin-bottom:20px;
+    border-radius:20px;
 }
 
 .footer{
     position:fixed;
-    bottom:15px;
-    right:30px;
+    right:20px;
+    bottom:10px;
     color:#94a3b8;
-    font-size:22px;
+    font-size:18px;
+}
+
+.news-image{
+    width:600px;
+    max-width:80%;
+    border-radius:20px;
+    margin-bottom:20px;
 }
 
 </style>
 </head>
 <body>
 
-<!-- SLIDE 1 -->
+<div id="carousel">
 
-<div class="slide active">
-    <div class="header">🕒 Digitale Klok</div>
+    <!-- SLIDE 1 -->
+    <section class="slide active">
+        <div class="title">🕒 Klok</div>
 
-    <div class="content">
         <div class="card">
-            <div class="big" id="clock"></div>
+            <div class="clock" id="clock">--:--:--</div>
             <div class="date" id="date"></div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- SLIDE 2 -->
+    <!-- SLIDE 2 -->
+    <section class="slide">
+        <div class="title">🌦 Weer Veendam</div>
 
-<div class="slide">
-    <div class="header">🌦 Weer Veendam</div>
-
-    <div class="content">
-        <div class="card medium" id="weatherVeendam">
-            Laden...
+        <div class="card weather" id="veendam">
+            Gegevens laden...
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- SLIDE 3 -->
+    <!-- SLIDE 3 -->
+    <section class="slide">
+        <div class="title">🌤 Weer Groningen</div>
 
-<div class="slide">
-    <div class="header">🌤 Weer Groningen</div>
-
-    <div class="content">
-        <div class="card medium" id="weatherGroningen">
-            Laden...
+        <div class="card weather" id="groningen">
+            Gegevens laden...
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- SLIDE 4 -->
+    <!-- SLIDE 4 -->
+    <section class="slide">
 
-<div class="slide">
-    <div class="header">📡 Buienradar Groningen</div>
+        <div class="title">📡 Radar Groningen</div>
 
-    <div class="content">
         <iframe
         src="https://embed.windy.com/embed2.html?lat=53.22&lon=6.57&zoom=8&level=surface&overlay=radar">
         </iframe>
-    </div>
-</div>
 
-<!-- SLIDE 5 -->
+    </E 5 -->
+    <section class="slide">
+        <div class="title">🚗 Verkeer A7</div>
 
-<div class=""header">🚗 Verkeer A7</div>
-
-    <div class="content">
-        <div class="card medium">
+        <div class="card info">
             <div id="trafficA7">
-                Geen actuele verkeersdata gekoppeld.
-                <br><br>
-                Koppel hier NDW of Rijkswaterstaat API.
+                Verkeersinformatie laden...
             </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="slide
